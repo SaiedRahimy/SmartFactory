@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using SmartFactorySample.Simulator.Application.Common.Interfaces;
+using SmartFactorySample.DataReception.Application.Common.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,20 +9,20 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SmartFactorySample.Simulator.Infrastructure.Services
+namespace SmartFactorySample.DataReception.Infrastructure.Services
 {
     public class ProcessorHostedService : IHostedService
     {
         #region Dependencies
-        private readonly ISimulatorHandler _simulatorHandler;
+        private readonly IConsumerHandler _processorHandler;
         private readonly ILogger<ProcessorHostedService> _logger;
         private Task _processingTask;
         #endregion
 
         #region Constructor
-        public ProcessorHostedService(ISimulatorHandler simulatorHandler, ILogger<ProcessorHostedService> logger)
+        public ProcessorHostedService(IConsumerHandler processorHandler, ILogger<ProcessorHostedService> logger)
         {
-            _simulatorHandler = simulatorHandler;
+            _processorHandler = processorHandler;
             _logger = logger;
         }
         #endregion
@@ -32,13 +32,13 @@ namespace SmartFactorySample.Simulator.Infrastructure.Services
         public async Task StartAsync(CancellationToken cancellationToken)
         {
             _logger.LogInformation("ProcessorHostedService is starting.");
-            await _simulatorHandler.StartAsync();
+            await _processorHandler.StartAsync();
         }
 
         public async Task StopAsync(CancellationToken cancellationToken)
         {
             _logger.LogInformation("ProcessorHostedService is stopping.");
-            await _simulatorHandler.StopAsync();
+            await _processorHandler.StopAsync();
         }
         #endregion
     }

@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+	  <PackageReference Include="Confluent.Kafka" Version="2.5.1" />
+	  <PackageReference Include="MessagePack" Version="2.5.172" />
+	  <PackageReference Include="Microsoft.AspNetCore.ApiAuthorization.IdentityServer" Version="7.0.20" />
+	  <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.7" />
+	  <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.7" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.7">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.7" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.7" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.7">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
+	  <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.7" />
+	  <PackageReference Include="RabbitMQ.Client" Version="6.0.0" />
+	  <PackageReference Include="RestSharp" Version="111.4.1" />
+	  <PackageReference Include="StackExchange.Redis" Version="2.8.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Persistence\Configurations\" />
+    <Folder Include="Persistence\Migrations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\SmartFactorySample.DataReception.Application\SmartFactorySample.DataReception.Application.csproj" />
+  </ItemGroup>
+
+</Project>
