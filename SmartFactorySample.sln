@@ -51,6 +51,28 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simulator.Application.DataR
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartFactorySample.DataReception.Domain.UnitTests", "Src\SmartFactorySample.DataReception\Tests\SmartFactorySample.DataReception.Domain.UnitTests\SmartFactorySample.DataReception.Domain.UnitTests.csproj", "{D8A41342-6D00-44BE-9404-412400845212}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SmartFactorySample.WebSocket", "SmartFactorySample.WebSocket", "{CD440276-1E17-48D7-AD5B-0B2B705B7AE6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{B153FCCF-39C7-4CCF-A217-C63F20D1E6EC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{BDB1309F-509F-48F8-961C-7175D9CD396D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{3B2B9824-9B10-4AC7-AA5D-0825C3811A0C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{DCAA87FB-673D-4B36-A986-6FD31D3CF90E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartFactorySample.WebSocket.Application", "Src\SmartFactorySample.WebSocket\Core\SmartFactorySample.WebSocket.Application\SmartFactorySample.WebSocket.Application.csproj", "{157CD002-276C-40DD-85FE-F66D4EA3288F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartFactorySample.WebSocket.Domain", "Src\SmartFactorySample.WebSocket\Core\SmartFactorySample.WebSocket.Domain\SmartFactorySample.WebSocket.Domain.csproj", "{D62332DE-A1F2-4405-9755-3B306DF22C19}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartFactorySample.WebSocket.Infrastructure", "Src\SmartFactorySample.WebSocket\Infrastructure\SmartFactorySample.WebSocket.Infrastructure\SmartFactorySample.WebSocket.Infrastructure.csproj", "{DCB331DE-EE11-44BA-82CD-8CEAD33B2157}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartFactorySample.WebSocket.WebUI", "Src\SmartFactorySample.WebSocket\Presentation\SmartFactorySample.WebSocket.WebUI\SmartFactorySample.WebSocket.WebUI.csproj", "{EF0FAF78-4279-4E66-A728-7889BA4C4EB3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartFactorySample.WebSocket.UnitTests", "Src\SmartFactorySample.WebSocket\Tests\SmartFactorySample.WebSocket.Application.UnitTests\SmartFactorySample.WebSocket.UnitTests.csproj", "{2DF20717-610C-4DA6-871C-F6150E346C4A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartFactorySample.WebSocket.Domain.UnitTests", "Src\SmartFactorySample.WebSocket\Tests\SmartFactorySample.WebSocket.Domain.UnitTests\SmartFactorySample.WebSocket.Domain.UnitTests.csproj", "{B8361EC5-BBD0-4911-8330-3FDE4BDB08C6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -130,6 +152,42 @@ Global
 		{D8A41342-6D00-44BE-9404-412400845212}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D8A41342-6D00-44BE-9404-412400845212}.Test|Any CPU.ActiveCfg = Test|Any CPU
 		{D8A41342-6D00-44BE-9404-412400845212}.Test|Any CPU.Build.0 = Test|Any CPU
+		{157CD002-276C-40DD-85FE-F66D4EA3288F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{157CD002-276C-40DD-85FE-F66D4EA3288F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{157CD002-276C-40DD-85FE-F66D4EA3288F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{157CD002-276C-40DD-85FE-F66D4EA3288F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{157CD002-276C-40DD-85FE-F66D4EA3288F}.Test|Any CPU.ActiveCfg = Debug|Any CPU
+		{157CD002-276C-40DD-85FE-F66D4EA3288F}.Test|Any CPU.Build.0 = Debug|Any CPU
+		{D62332DE-A1F2-4405-9755-3B306DF22C19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D62332DE-A1F2-4405-9755-3B306DF22C19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D62332DE-A1F2-4405-9755-3B306DF22C19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D62332DE-A1F2-4405-9755-3B306DF22C19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D62332DE-A1F2-4405-9755-3B306DF22C19}.Test|Any CPU.ActiveCfg = Debug|Any CPU
+		{D62332DE-A1F2-4405-9755-3B306DF22C19}.Test|Any CPU.Build.0 = Debug|Any CPU
+		{DCB331DE-EE11-44BA-82CD-8CEAD33B2157}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCB331DE-EE11-44BA-82CD-8CEAD33B2157}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCB331DE-EE11-44BA-82CD-8CEAD33B2157}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCB331DE-EE11-44BA-82CD-8CEAD33B2157}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCB331DE-EE11-44BA-82CD-8CEAD33B2157}.Test|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCB331DE-EE11-44BA-82CD-8CEAD33B2157}.Test|Any CPU.Build.0 = Debug|Any CPU
+		{EF0FAF78-4279-4E66-A728-7889BA4C4EB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF0FAF78-4279-4E66-A728-7889BA4C4EB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF0FAF78-4279-4E66-A728-7889BA4C4EB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF0FAF78-4279-4E66-A728-7889BA4C4EB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF0FAF78-4279-4E66-A728-7889BA4C4EB3}.Test|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF0FAF78-4279-4E66-A728-7889BA4C4EB3}.Test|Any CPU.Build.0 = Debug|Any CPU
+		{2DF20717-610C-4DA6-871C-F6150E346C4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DF20717-610C-4DA6-871C-F6150E346C4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DF20717-610C-4DA6-871C-F6150E346C4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DF20717-610C-4DA6-871C-F6150E346C4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DF20717-610C-4DA6-871C-F6150E346C4A}.Test|Any CPU.ActiveCfg = Test|Any CPU
+		{2DF20717-610C-4DA6-871C-F6150E346C4A}.Test|Any CPU.Build.0 = Test|Any CPU
+		{B8361EC5-BBD0-4911-8330-3FDE4BDB08C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8361EC5-BBD0-4911-8330-3FDE4BDB08C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8361EC5-BBD0-4911-8330-3FDE4BDB08C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8361EC5-BBD0-4911-8330-3FDE4BDB08C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8361EC5-BBD0-4911-8330-3FDE4BDB08C6}.Test|Any CPU.ActiveCfg = Test|Any CPU
+		{B8361EC5-BBD0-4911-8330-3FDE4BDB08C6}.Test|Any CPU.Build.0 = Test|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -157,6 +215,17 @@ Global
 		{2EF36E0A-3CCE-48F5-AC22-C3F6CD8C767C} = {E6E7DC6C-5F44-4B75-AE66-75DF095F95D4}
 		{C0DCBE1E-8FBC-4042-BB72-AD7FC987B6A7} = {58AD5F79-C526-4DAE-BC7F-4A3936FE2DB3}
 		{D8A41342-6D00-44BE-9404-412400845212} = {58AD5F79-C526-4DAE-BC7F-4A3936FE2DB3}
+		{CD440276-1E17-48D7-AD5B-0B2B705B7AE6} = {E304A553-0F63-4126-BBB6-95F54B7CB4DA}
+		{B153FCCF-39C7-4CCF-A217-C63F20D1E6EC} = {CD440276-1E17-48D7-AD5B-0B2B705B7AE6}
+		{BDB1309F-509F-48F8-961C-7175D9CD396D} = {CD440276-1E17-48D7-AD5B-0B2B705B7AE6}
+		{3B2B9824-9B10-4AC7-AA5D-0825C3811A0C} = {CD440276-1E17-48D7-AD5B-0B2B705B7AE6}
+		{DCAA87FB-673D-4B36-A986-6FD31D3CF90E} = {CD440276-1E17-48D7-AD5B-0B2B705B7AE6}
+		{157CD002-276C-40DD-85FE-F66D4EA3288F} = {B153FCCF-39C7-4CCF-A217-C63F20D1E6EC}
+		{D62332DE-A1F2-4405-9755-3B306DF22C19} = {B153FCCF-39C7-4CCF-A217-C63F20D1E6EC}
+		{DCB331DE-EE11-44BA-82CD-8CEAD33B2157} = {BDB1309F-509F-48F8-961C-7175D9CD396D}
+		{EF0FAF78-4279-4E66-A728-7889BA4C4EB3} = {3B2B9824-9B10-4AC7-AA5D-0825C3811A0C}
+		{2DF20717-610C-4DA6-871C-F6150E346C4A} = {DCAA87FB-673D-4B36-A986-6FD31D3CF90E}
+		{B8361EC5-BBD0-4911-8330-3FDE4BDB08C6} = {DCAA87FB-673D-4B36-A986-6FD31D3CF90E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {43D3E676-3E2C-4390-81C1-D33BA864BE20}
