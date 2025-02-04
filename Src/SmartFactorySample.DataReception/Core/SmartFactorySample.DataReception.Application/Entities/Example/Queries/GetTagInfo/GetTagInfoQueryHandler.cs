@@ -20,9 +20,9 @@ namespace SmartFactorySample.DataReception.Application.Entities.TagInfo.Queries.
             _context = context;
         }
 
-        public Task<TagFullInfoDto> Handle(GetTagInfoQuery request, CancellationToken cancellationToken)
+        public async Task<TagFullInfoDto> Handle(GetTagInfoQuery request, CancellationToken cancellationToken)
         {
-            return Task.FromResult(_context.GetTagInfo(request));
+            return await _context.GetTagInfo(request);
         }
     }
 }

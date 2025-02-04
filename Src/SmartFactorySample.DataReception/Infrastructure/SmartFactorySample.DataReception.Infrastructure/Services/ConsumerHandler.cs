@@ -15,22 +15,22 @@ namespace SmartFactorySample.DataReception.Infrastructure.Services
     {
         #region Dependencies
         private readonly ILogger<ConsumerHandler> _logger;
-        private readonly IMessageQueueService _messageQueueService;
+        private readonly IMessageQueueConsumerService _messageQueueConsumerService;
 
         #endregion
 
         #region Properties
 
         private bool _isRunning = true;
-       
+
 
         #endregion
 
         #region Constructor
-        public ConsumerHandler(IMessageQueueService messageQueueService, ILogger<ConsumerHandler> logger, IConfiguration configuration)
+        public ConsumerHandler(IMessageQueueConsumerService messageQueueConsumerService, ILogger<ConsumerHandler> logger, IConfiguration configuration)
         {
             _logger = logger;
-            _messageQueueService = messageQueueService;
+            _messageQueueConsumerService = messageQueueConsumerService;
 
         }
         #endregion
@@ -40,13 +40,14 @@ namespace SmartFactorySample.DataReception.Infrastructure.Services
         {
             _logger.LogInformation("SimulatorHandler started.");
 
-
+            await Task.Run(() => _messageQueueConsumerService.ConsumeData());
 
         }
 
         public async Task StopAsync()
         {
             _logger.LogInformation("SimulatorHandler stopping...");
+            _messageQueueConsumerService.Stop();
             _isRunning = false;
         }
 
@@ -55,7 +56,7 @@ namespace SmartFactorySample.DataReception.Infrastructure.Services
 
         #region Private Methods
 
-       
+
 
 
 

@@ -10,8 +10,11 @@ namespace SmartFactorySample.DataReception.Application.Dtos
     [MessagePackObject(true)]
     public class TagInfoDto
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public DateTime DateTime { get; set; }
         public decimal Value { get; set; }
     }
+
+    
 }

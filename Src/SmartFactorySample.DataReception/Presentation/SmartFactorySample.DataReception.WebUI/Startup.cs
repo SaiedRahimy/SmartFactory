@@ -61,16 +61,19 @@ namespace SmartFactorySample.DataReception.WebUI
 
                 case "Kafka":
                     services.AddSingleton<IMessageQueueService, KafkaService>();
+                    services.AddSingleton<IMessageQueueConsumerService, KafkaConsumerService>();
                     break;
 
                 case "RabbitMq":
                     services.AddSingleton<IMessageQueueService, RabbitMqService>();
+                    services.AddSingleton<IMessageQueueConsumerService, RabbitMqConsumerService>();
                     break;
 
                 default: throw new Exception("Invalid message queue provider");
             };
 
 
+            services.AddSingleton<ILocalBufferService, LocalBufferService>();
             services.AddSingleton<IConsumerHandler, ConsumerHandler>();
             services.AddHostedService<ProcessorHostedService>();
 

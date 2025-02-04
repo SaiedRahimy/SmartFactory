@@ -1,29 +1,25 @@
 ﻿using SmartFactorySample.DataReception.Application.Common.Interfaces;
 using SmartFactorySample.DataReception.Domain.Common;
-using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using SmartFactorySample.DataReception.Infrastructure.Identity;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+using SmartFactorySample.DataReception.Domain.Entities;
 
 namespace SmartFactorySample.DataReception.Infrastructure.Persistence
 {
-    public class ApplicationDbContext : DbContext, IApplicationDbContext
+    public class DataReceptionContext : DbContext, IApplicationDbContext
     {
         private readonly ICurrentUserService _currentUserService;
         private readonly IDateTime _dateTime;
 
-        public ApplicationDbContext(
-            DbContextOptions options,
-            ICurrentUserService currentUserService,
-            IDateTime dateTime) : base(options)
+        public DataReceptionContext(DbContextOptions options, ICurrentUserService currentUserService, IDateTime dateTime) : base(options)
         {
             _currentUserService = currentUserService;
             _dateTime = dateTime;
         }
+        public DbSet<TagInfo> TagInfos { get; set; }
 
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())

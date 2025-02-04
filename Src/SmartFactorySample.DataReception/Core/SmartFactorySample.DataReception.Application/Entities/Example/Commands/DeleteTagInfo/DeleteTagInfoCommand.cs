@@ -23,9 +23,9 @@ namespace SmartFactorySample.DataReception.Application.Entities.TagInfo.Commands
             _context = context;
         }
 
-        public Task<bool> Handle(DeleteTagInfoCommand request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(DeleteTagInfoCommand request, CancellationToken cancellationToken)
         {
-            return Task.FromResult(_context.DeleteTagInfo(request));
+            return await _context.DeleteTagInfo(request);
         }
     }
 }

@@ -14,9 +14,9 @@ namespace SmartFactorySample.DataReception.WebUI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ExampleController : ApiControllerBase
+    public class TagController : ApiControllerBase
     {
-        public ExampleController()
+        public TagController()
         {
 
         }
@@ -30,7 +30,6 @@ namespace SmartFactorySample.DataReception.WebUI.Controllers
             }
             catch (Exception ex)
             {
-                // add log
                 return new JsonResult(BadRequest(ex));
             }
         }
@@ -46,37 +45,33 @@ namespace SmartFactorySample.DataReception.WebUI.Controllers
         }
 
         [HttpPost]
-        [Route("CreateExample")]
-        public async Task<IActionResult> CreateExample([FromBody] CreateTagInfoCommand command)
+        [Route("CreateTag")]
+        public async Task<IActionResult> CreateTag([FromBody] CreateTagInfoCommand command)
         {
-            // add log
             var result = await Mediator.Send(command);
             return new JsonResult(Ok(CreateResponse(result)));
         }
 
         [HttpPost]
-        [Route("DeleteExample")]
-        public async Task<IActionResult> DeleteExample([FromBody] DeleteTagInfoCommand command)
+        [Route("DeleteTag")]
+        public async Task<IActionResult> DeleteTag([FromBody] DeleteTagInfoCommand command)
         {
-            // add log
             var result = await Mediator.Send(command);
             return new JsonResult(Ok(CreateResponse(result)));
         }
 
         [HttpPost]
-        [Route("UpdateExample")]
-        public async Task<IActionResult> UpdateExample([FromBody] UpdateTagInfoCommand command)
+        [Route("UpdateTag")]
+        public async Task<IActionResult> UpdateTag([FromBody] UpdateTagInfoCommand command)
         {
-            // add log
             var result = await Mediator.Send(command);
             return new JsonResult(Ok(CreateResponse(result)));
         }
 
         [HttpPost]
-        [Route("GetExample")]
-        public async Task<IActionResult> GetExample([FromBody] GetTagInfoQuery command)
+        [Route("GetTagInfo")]
+        public async Task<IActionResult> GetTagInfo([FromBody] GetTagInfoQuery command)
         {
-            // add log
             var result = await Mediator.Send(command);
             return new JsonResult(Ok(CreateResponse(result)));
         }

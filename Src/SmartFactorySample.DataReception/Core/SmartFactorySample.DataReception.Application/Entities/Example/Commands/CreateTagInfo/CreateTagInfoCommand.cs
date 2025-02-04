@@ -24,9 +24,9 @@ namespace SmartFactorySample.DataReception.Application.Entities.TagInfo.Commands
             _context = context;
         }
 
-        public Task<bool> Handle(CreateTagInfoCommand request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(CreateTagInfoCommand request, CancellationToken cancellationToken)
         {
-            return Task.FromResult(_context.CreateTagInfo(request));
+            return  await _context.CreateTagInfo(request);
         }
     }
 }

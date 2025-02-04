@@ -12,7 +12,7 @@ namespace SmartFactorySample.DataReception.Application.Entities.TagInfo.Commands
     public class UpdateTagInfoCommand : IRequest<bool>
     {
         public int Id { get; set; }
-        public string Value { get; set; }
+        public string Name { get; set; }
     }
 
     public class UpdateTagInfoCommandHandler : IRequestHandler<UpdateTagInfoCommand, bool>
@@ -24,9 +24,9 @@ namespace SmartFactorySample.DataReception.Application.Entities.TagInfo.Commands
             _context = context;
         }
 
-        public Task<bool> Handle(UpdateTagInfoCommand request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(UpdateTagInfoCommand request, CancellationToken cancellationToken)
         {
-            return Task.FromResult(_context.UpdateTagInfo(request));
+            return await _context.UpdateTagInfo(request);
         }
     }
 }

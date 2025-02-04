@@ -13,9 +13,12 @@ namespace SmartFactorySample.DataReception.Application.Common.Interfaces
 {
     public interface ITagInfoManager
     {
-        public bool CreateTagInfo(CreateTagInfoCommand request);
-        public bool UpdateTagInfo(UpdateTagInfoCommand request);
-        public bool DeleteTagInfo(DeleteTagInfoCommand request);
-        public TagFullInfoDto GetTagInfo(GetTagInfoQuery request);
+        Task<bool> CreateTagInfo(CreateTagInfoCommand request);
+        Task<bool> UpdateTagInfo(UpdateTagInfoCommand request);
+        Task<bool> DeleteTagInfo(DeleteTagInfoCommand request);
+        Task<TagFullInfoDto> GetTagInfo(GetTagInfoQuery request);
+
+        Task RegisterNewTags(List<TagInfoDto> baseSensorDataDtos);
+        void EnrichTagId(TagInfoDto tag);
     }
 }
