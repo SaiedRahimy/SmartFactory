@@ -18,6 +18,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using SmartFactorySample.IdentityService.Infrastructure.Services.MessageQueue;
 using SmartFactorySample.IdentityService.Infrastructure.Services;
+using IdentityModel;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
+using SmartFactorySample.IdentityService.Infrastructure.Identity;
 
 namespace SmartFactorySample.IdentityService.WebUI
 {
@@ -74,6 +78,9 @@ namespace SmartFactorySample.IdentityService.WebUI
             services.AddSingleton<ISimulatorHandler, SimulatorHandler>();
             services.AddHostedService<ProcessorHostedService>();
 
+            services.AddExceptionHandler<GlobalExceptionHandler>();
+            services.AddProblemDetails();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -88,12 +95,26 @@ namespace SmartFactorySample.IdentityService.WebUI
 
             app.UseRouting();
 
+            app.UseExceptionHandler();
+
+            app.UseIdentityServer();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+
+            using (var scope = app.ApplicationServices.CreateScope())
+            {
+                var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+                var user = new ApplicationUser { UserName = "admin", Email = "admin@example.com", EmailConfirmed = true };
+                if (userManager.FindByNameAsync(user.UserName).Result == null)
+                {
+                    userManager.CreateAsync(user, "1234").Wait();
+                    userManager.AddClaimsAsync(user, new List<Claim> { new Claim(JwtClaimTypes.Role, "admin") }).Wait();
+                }
+            }
         }
     }
 }

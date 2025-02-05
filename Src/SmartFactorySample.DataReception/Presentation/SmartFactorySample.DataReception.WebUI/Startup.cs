@@ -77,6 +77,9 @@ namespace SmartFactorySample.DataReception.WebUI
             services.AddSingleton<IConsumerHandler, ConsumerHandler>();
             services.AddHostedService<ProcessorHostedService>();
 
+            services.AddExceptionHandler<GlobalExceptionHandler>();
+            services.AddProblemDetails();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -89,7 +92,10 @@ namespace SmartFactorySample.DataReception.WebUI
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SmartFactorySample.DataReception.WebUI v1"));
             }
 
-            app.UseRouting();
+            app.UseRouting(); 
+            
+            app.UseExceptionHandler();
+
 
             app.UseAuthorization();
 

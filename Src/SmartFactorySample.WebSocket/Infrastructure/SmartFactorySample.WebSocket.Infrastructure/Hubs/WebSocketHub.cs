@@ -1,6 +1,7 @@
 ﻿using Azure;
 using Confluent.Kafka;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Configuration;
@@ -42,7 +43,7 @@ namespace SmartFactorySample.WebSocket.Infrastructure.Hubs
         #endregion
 
         #region Public Methods
-
+        [Authorize(Policy = "SignalRAuthorization")]
         public override async Task OnConnectedAsync()
         {
             if (Context != null)

@@ -19,6 +19,7 @@ using System.Threading.Tasks;
 using SmartFactorySample.DataPresentation.Infrastructure.Services.MessageQueue;
 using SmartFactorySample.DataPresentation.Infrastructure.Services;
 using SmartFactorySample.DataPresentation.Infrastructure.Services.Cache;
+using SmartFactorySample.DataPresentation.WebUI.Handler;
 
 namespace SmartFactorySample.DataPresentation.WebUI
 {
@@ -78,6 +79,8 @@ namespace SmartFactorySample.DataPresentation.WebUI
             services.AddSingleton<IConsumerHandler, ConsumerHandler>();
             services.AddHostedService<ProcessorHostedService>();
 
+            services.AddExceptionHandler<GlobalExceptionHandler>();
+            services.AddProblemDetails();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -91,6 +94,7 @@ namespace SmartFactorySample.DataPresentation.WebUI
             }
 
             app.UseRouting();
+            app.UseExceptionHandler();
 
             app.UseAuthorization();
 

@@ -9,9 +9,11 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SmartFactorySample.DataReception.WebUI.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class TagController : ApiControllerBase

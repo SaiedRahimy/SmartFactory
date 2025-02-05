@@ -20,6 +20,7 @@ using SmartFactorySample.WebSocket.Infrastructure.Services.MessageQueue;
 using SmartFactorySample.WebSocket.Infrastructure.Services;
 using SmartFactorySample.WebSocket.Infrastructure.Services.Cache;
 using SmartFactorySample.WebSocket.Infrastructure.Hubs;
+using SmartFactorySample.WebSocket.WebUI.Handler;
 
 namespace SmartFactorySample.WebSocket.WebUI
 {
@@ -79,6 +80,9 @@ namespace SmartFactorySample.WebSocket.WebUI
             services.AddSingleton<IConsumerHandler, ConsumerHandler>();
             services.AddHostedService<ProcessorHostedService>();
 
+            services.AddExceptionHandler<GlobalExceptionHandler>();
+            services.AddProblemDetails();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -92,6 +96,7 @@ namespace SmartFactorySample.WebSocket.WebUI
             }
 
             app.UseRouting();
+            app.UseExceptionHandler();
 
             app.UseAuthorization();
 

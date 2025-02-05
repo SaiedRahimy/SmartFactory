@@ -8,6 +8,9 @@ using SmartFactorySample.WebSocket.Infrastructure.Identity;
 using SmartFactorySample.WebSocket.Infrastructure.Persistence;
 using SmartFactorySample.WebSocket.Infrastructure.Services;
 using System;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Threading.Tasks;
+using SmartFactorySample.WebSocket.Infrastructure.Hubs;
 
 namespace SmartFactorySample.WebSocket.Infrastructure
 {
@@ -44,13 +47,38 @@ namespace SmartFactorySample.WebSocket.Infrastructure
             services.AddTransient<IIdentityService, IdentityService>();
 
 
-          
-            services.AddAuthentication()
-                .AddIdentityServerJwt();
+
+
+            var identityServerUrl = configuration["IdentityServerUrl"];
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.Authority = identityServerUrl;
+                    options.RequireHttpsMetadata = false;
+                    options.Audience = "SmartFactorySample";
+                    options.Events = new JwtBearerEvents
+                    {
+                        OnMessageReceived = context =>
+                        {
+                            // If the request is for our hub...
+                            var path = context.HttpContext.Request.Path;
+                            if (path.StartsWithSegments("/dataStream") && context.Request.Query.TryGetValue("access_token", out var accessToken))
+                            {
+                                // Read the token out of the query string
+                                context.Token = accessToken;
+                                context.HttpContext.Request.Headers.Add("Authorization", $"Bearer {accessToken}");
+                            }
+                            return Task.CompletedTask;
+                        }
+                    };
+                });
 
             services.AddAuthorization(options =>
             {
+                options.AddPolicy("ApiAccess", policy => policy.RequireAuthenticatedUser());
                 options.AddPolicy("CanPurge", policy => policy.RequireRole("Administrator"));
+                options.AddPolicy("SignalRAuthorization", policy => policy.Requirements.Add(new SignalRAuthorization()));
             });
 
             services.AddSignalR(options =>

@@ -18,6 +18,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using SmartFactorySample.Simulator.Infrastructure.Services.MessageQueue;
 using SmartFactorySample.Simulator.Infrastructure.Services;
+using SmartFactorySample.Simulator.WebUI.Handler;
 
 namespace SmartFactorySample.Simulator.WebUI
 {
@@ -74,6 +75,8 @@ namespace SmartFactorySample.Simulator.WebUI
             services.AddSingleton<ISimulatorHandler, SimulatorHandler>();
             services.AddHostedService<ProcessorHostedService>();
 
+            services.AddExceptionHandler<GlobalExceptionHandler>();
+            services.AddProblemDetails();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -87,6 +90,7 @@ namespace SmartFactorySample.Simulator.WebUI
             }
 
             app.UseRouting();
+            app.UseExceptionHandler();
 
             app.UseAuthorization();
 

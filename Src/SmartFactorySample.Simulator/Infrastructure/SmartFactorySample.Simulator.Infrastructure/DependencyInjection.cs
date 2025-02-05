@@ -8,6 +8,7 @@ using SmartFactorySample.Simulator.Infrastructure.Identity;
 using SmartFactorySample.Simulator.Infrastructure.Persistence;
 using SmartFactorySample.Simulator.Infrastructure.Persistence.Example;
 using SmartFactorySample.Simulator.Infrastructure.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace SmartFactorySample.Simulator.Infrastructure
 {
@@ -45,11 +46,20 @@ namespace SmartFactorySample.Simulator.Infrastructure
             services.AddTransient<IIdentityService, IdentityService>();
 
 
-            services.AddAuthentication()
-                .AddIdentityServerJwt();
+
+            var identityServerUrl = configuration["IdentityServerUrl"];
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.Authority = identityServerUrl;
+                    options.RequireHttpsMetadata = false;
+                    options.Audience = "SmartFactorySample";
+                });
 
             services.AddAuthorization(options =>
             {
+                options.AddPolicy("ApiAccess", policy => policy.RequireAuthenticatedUser());
                 options.AddPolicy("CanPurge", policy => policy.RequireRole("Administrator"));
             });
 
