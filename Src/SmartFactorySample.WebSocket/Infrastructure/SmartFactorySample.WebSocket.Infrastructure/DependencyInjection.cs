@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SmartFactorySample.WebSocket.Infrastructure.Identity;
 using SmartFactorySample.WebSocket.Infrastructure.Persistence;
 using SmartFactorySample.WebSocket.Infrastructure.Services;
+using System;
 
 namespace SmartFactorySample.WebSocket.Infrastructure
 {
@@ -43,12 +44,20 @@ namespace SmartFactorySample.WebSocket.Infrastructure
             services.AddTransient<IIdentityService, IdentityService>();
 
 
+          
             services.AddAuthentication()
                 .AddIdentityServerJwt();
 
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("CanPurge", policy => policy.RequireRole("Administrator"));
+            });
+
+            services.AddSignalR(options =>
+            {
+                options.EnableDetailedErrors = true;
+                options.ClientTimeoutInterval = TimeSpan.FromMinutes(5);
+                options.KeepAliveInterval = TimeSpan.FromSeconds(5);
             });
 
             return services;

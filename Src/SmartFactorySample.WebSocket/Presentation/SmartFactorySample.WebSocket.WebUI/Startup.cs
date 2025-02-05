@@ -18,6 +18,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using SmartFactorySample.WebSocket.Infrastructure.Services.MessageQueue;
 using SmartFactorySample.WebSocket.Infrastructure.Services;
+using SmartFactorySample.WebSocket.Infrastructure.Services.Cache;
+using SmartFactorySample.WebSocket.Infrastructure.Hubs;
 
 namespace SmartFactorySample.WebSocket.WebUI
 {
@@ -71,6 +73,8 @@ namespace SmartFactorySample.WebSocket.WebUI
             };
 
 
+            services.AddSingleton<IRedisProvider, RedisProvider>();
+            services.AddSingleton<ICacheService, CacheService>();
             services.AddSingleton<ILocalBufferService, LocalBufferService>();
             services.AddSingleton<IConsumerHandler, ConsumerHandler>();
             services.AddHostedService<ProcessorHostedService>();
@@ -93,6 +97,10 @@ namespace SmartFactorySample.WebSocket.WebUI
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapHub<WebSocketHub>("/dataStream", conf =>
+                {
+                    conf.Transports = Microsoft.AspNetCore.Http.Connections.HttpTransportType.WebSockets;
+                });
                 endpoints.MapControllers();
             });
         }

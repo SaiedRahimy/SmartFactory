@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <Folder Include="Common\Mappings\" />
+    <Folder Include="Entities\TagInfo\Queries\" />
     <Folder Include="Entities\Example\Commands\" />
     <Folder Include="Entities\Example\Queries\" />
   </ItemGroup>
