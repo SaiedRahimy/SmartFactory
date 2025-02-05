@@ -94,18 +94,20 @@ namespace SmartFactorySample.WebSocket.Infrastructure.Services
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError($"Exception in ProcessLocalQueueData", ex);
+                    _logger.LogError("Exception in ProcessData", ex);
                 }
             }
         }
 
         async Task SendDatas(List<TagInfoDto> tags)
         {
-            foreach (var tag in tags)
+            Parallel.ForEach(tags, new ParallelOptions { MaxDegreeOfParallelism = 2 }, async tag =>
             {
                 var groupName = HubKeys.GenerateSensorGroupName(tag.Id);
                 await _webSocketHub.Clients.Group(groupName).LiveData(tag);
-            }
+            });
+
+
         }
 
         void StartTimerProcessData()
