@@ -1,0 +1,45 @@
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using SmartFactorySample.IdentityService.Application.Common.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace SmartFactorySample.IdentityService.Infrastructure.Services
+{
+    public class ProcessorHostedService : IHostedService
+    {
+        #region Dependencies
+        private readonly ISimulatorHandler _simulatorHandler;
+        private readonly ILogger<ProcessorHostedService> _logger;
+        private Task _processingTask;
+        #endregion
+
+        #region Constructor
+        public ProcessorHostedService(ISimulatorHandler simulatorHandler, ILogger<ProcessorHostedService> logger)
+        {
+            _simulatorHandler = simulatorHandler;
+            _logger = logger;
+        }
+        #endregion
+
+        #region Hosted Methods
+
+        public async Task StartAsync(CancellationToken cancellationToken)
+        {
+            _logger.LogInformation("ProcessorHostedService is starting.");
+            await _simulatorHandler.StartAsync();
+        }
+
+        public async Task StopAsync(CancellationToken cancellationToken)
+        {
+            _logger.LogInformation("ProcessorHostedService is stopping.");
+            await _simulatorHandler.StopAsync();
+        }
+        #endregion
+    }
+}
