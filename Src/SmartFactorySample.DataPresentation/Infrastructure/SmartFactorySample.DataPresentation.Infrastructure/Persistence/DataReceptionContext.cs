@@ -5,6 +5,8 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using SmartFactorySample.DataPresentation.Domain.Common;
+using SmartFactorySample.DataPresentation.Domain.Entities;
+using static Duende.IdentityServer.Models.IdentityResources;
 
 namespace SmartFactorySample.DataPresentation.Infrastructure.Persistence
 {
@@ -19,6 +21,7 @@ namespace SmartFactorySample.DataPresentation.Infrastructure.Persistence
             _dateTime = dateTime;
         }
 
+        public DbSet<Domain.Entities.TagDailyData> TagDailyDatas { get; set; }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {

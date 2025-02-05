@@ -123,7 +123,7 @@ namespace SmartFactorySample.DataReception.Infrastructure.Services
             {
                 foreach (var tag in tags)
                 {
-                    DbContextOutputCache.Enqueue(tag, tag.DateTime);
+                    DbContextOutputCache.Enqueue(tag, tag.Timestamp);
                 }
 
             }

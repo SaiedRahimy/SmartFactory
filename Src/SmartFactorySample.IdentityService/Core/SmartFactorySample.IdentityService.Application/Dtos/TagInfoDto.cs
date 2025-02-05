@@ -11,7 +11,7 @@ namespace SmartFactorySample.IdentityService.Application.Dtos
     public class TagInfoDto
     {
         public string Name { get; set; }
-        public DateTime DateTime { get; set; }
+        public DateTime Timestamp { get; set; }
         public decimal Value { get; set; }
     }
 }

@@ -87,7 +87,7 @@ namespace SmartFactorySample.Simulator.Infrastructure.Services
                 tasks.Add(Task.Run(() => _messageQueueService.PublishAsync(new TagInfoDto
                 {
                     Name = name,
-                    DateTime = DateTime.UtcNow,
+                    Timestamp = DateTime.UtcNow,
                     Value = (decimal)(Random.Shared.NextDouble() * 100)
 
                 })));

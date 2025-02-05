@@ -8,6 +8,7 @@ using SmartFactorySample.DataPresentation.Infrastructure.Identity;
 using SmartFactorySample.DataPresentation.Infrastructure.Persistence;
 using SmartFactorySample.DataPresentation.Infrastructure.Services;
 using System;
+using SmartFactorySample.DataPresentation.Infrastructure.Persistence.TagDailyData;
 
 namespace SmartFactorySample.DataPresentation.Infrastructure
 {
@@ -15,6 +16,7 @@ namespace SmartFactorySample.DataPresentation.Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddSingleton<ITagDailyDataManager, TagDailyDataManager>();
 
 
             if (configuration.GetValue<bool>("UseInMemoryDatabase"))

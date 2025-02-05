@@ -15,7 +15,7 @@ namespace SmartFactorySample.DataPresentation.Infrastructure.Services
 {
     public class CacheService : ICacheService
     {
-        #region Dependencies
+        #region Cache State
         private ConcurrentDictionary<int, TagInfoDto> _cache;
 
         #endregion
